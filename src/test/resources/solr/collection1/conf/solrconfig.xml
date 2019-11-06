@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config>
+
+	<luceneMatchVersion>5.0.0</luceneMatchVersion>
+	<directoryFactory name="DirectoryFactory" class="solr.RAMDirectoryFactory" />
+
+	<dataDir>${solr.core0.data.dir:}</dataDir>
+
+	<schemaFactory class="ClassicIndexSchemaFactory" />
+
+    <indexConfig>
+        <!-- Needed for RAMDirectoryFactory -->
+        <lockType>single</lockType>
+    </indexConfig>
+
+	<updateHandler class="solr.DirectUpdateHandler2" />
+
+	<requestDispatcher handleSelect="false">
+		<requestParsers enableRemoteStreaming="false"
+			multipartUploadLimitInKB="2048" formdataUploadLimitInKB="2048" />
+	</requestDispatcher>
+
+
+
+
+	<searchComponent name="entitymapping" class="entity.mapping.component.EntityMappingSearchComponent"/>
+
+	<requestHandler name="/select" class="solr.SearchHandler">
+		<lst name="defaults">
+			<str name="echoParams">explicit</str>
+			<str name="wt">json</str>
+			<str name="indent">true</str>
+		</lst>
+		<arr name="components">
+			<str>entitymapping</str>
+		</arr>
+	</requestHandler>
+
+
+
+
+	<admin>
+		<defaultQuery>solr</defaultQuery>
+	</admin>
+
+</config>
+

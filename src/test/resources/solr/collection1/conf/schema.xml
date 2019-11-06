@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<schema name="minimal test schema" version="1.5">
+
+    <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
+    <field name="_version_" type="plong" indexed="false" stored="false"/>
+    <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <!--  <field name="_text_" type="ws_lower" multiValued="true" indexed="true" stored="false"/>
+
+    <field name="original" type="string" multiValued="false" indexed="true" stored="true"/>
+    <field name="search_def_id" type="string" multiValued="false" indexed="true" stored="true"/>
+    <field name="token_count" type="string" multiValued="false" indexed="true" stored="true"/>
+    <field name="variant" type="ws_lower" multiValued="false" indexed="true" stored="true"/>
+    <field name="group_id" type="string" multiValued="false" indexed="true" stored="true"/>
+
+    <fieldType name="ws_lower" class="solr.TextField" positionIncrementGap="100" multiValued="false">
+        <analyzer>
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+            <filter class="solr.LowerCaseFilterFactory"/>
+        </analyzer>
+    </fieldType> -->
+
+    <dynamicField name="*_ss" type="strings" indexed="true" stored="true"/>
+    <dynamicField name="*_s" type="string" indexed="true" stored="true"/>
+    <dynamicField name="*_d" type="pdouble" indexed="true" stored="true"/>
+    <dynamicField name="*_ws" type="text_ws" indexed="true" stored="true"/>
+
+
+    <fieldType name="pdouble" class="solr.DoublePointField" docValues="true"/>
+    <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
+    <fieldType name="strings" class="solr.StrField" sortMissingLast="true" docValues="true" multiValued="true"/>
+    <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+        <analyzer>
+            <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        </analyzer>
+    </fieldType>
+
+    <uniqueKey>id</uniqueKey>
+
+</schema>
+

@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'de'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.9
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    solrVersion = '7.7.2'
+}
+
+dependencies {
+    compileOnly group: "org.apache.solr", name: "solr-core", version: "$solrVersion"
+
+
+    testCompile group: "junit", name: "junit", version: "4.12"
+    testCompile group: "org.assertj", name: "assertj-core", version: "3.11.0"
+    testCompile group: "org.mockito", name: "mockito-core", version: "2.28.2"
+    testCompile group: "org.apache.solr", name: "solr-test-framework", version: "$solrVersion"
+}
+
+
